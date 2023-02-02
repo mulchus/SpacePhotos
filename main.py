@@ -51,5 +51,5 @@ if __name__ == '__main__':
     file_name = 'spacex'
     # file_name = file_url.split('/')[-1]
     for file_number, file_url in enumerate(spaceximagelist[firstimage-1:firstimage-1+numberimages]):
-        file_name = f'spacex_{file_number}.jpg'
+        file_name = f'{file_name}{file_number}.jpg'
         get_image(file_url, file_path, file_name)
