@@ -22,7 +22,7 @@ def takespaceximagelist(urloffile):
     if latestimageslist:
         return latestimageslist
     else:
-        urloffileall = (urloffile.replace('latest', 'past')) # past по API выдает все предыдущие запуски
+        urloffileall = (urloffile.replace('latest', 'past'))  # past по API выдает все предыдущие запуски
         response = requests.get(urloffileall)
         response.raise_for_status()
 
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     # file_url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
     file_path = './Images/SpaceX/'
     file_url = 'https://api.spacexdata.com/v5/launches/latest'
-    spaceximagelist =takespaceximagelist(file_url)
+    spaceximagelist = takespaceximagelist(file_url)
 
     for file_url in spaceximagelist[:3]:
         get_image(file_url, file_path)
