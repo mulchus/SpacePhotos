@@ -3,10 +3,10 @@ from pathlib import Path
 from os import path
 # import os
 from urllib import parse
-import datetime
+# import datetime
 
 
-def get_image(urloffile, pathoffile, filename='', payload=''):
+def get_image(urloffile, pathoffile, filename='', payloads=()):
 
     Path(pathoffile).mkdir(parents=True, exist_ok=True)
 
@@ -14,7 +14,7 @@ def get_image(urloffile, pathoffile, filename='', payload=''):
         filename = parse.unquote(path.split(parse.urlsplit(urloffile).path)[1])
 
     headers = {'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)'}
-    response = requests.get(urloffile, headers=headers, params=payload)
+    response = requests.get(urloffile, headers=headers, params=payloads)
     response.raise_for_status()
 
     with open(f'{pathoffile}{filename}', 'wb') as file:
@@ -65,8 +65,6 @@ def takenasaepicidimagelist(urltodict, payloads):
     return image_list
 
 
-
-
 def ext_extract(file_url_):
     return path.splitext(parse.urlsplit(file_url_).path)[1]
 
@@ -91,8 +89,8 @@ if __name__ == '__main__':
     # imagelist = takenasaapodimagelist(all_files_url, payload)
 
     # НЕ УДАЛЯТЬ!!! ДАТА ДЛЯ СКАЧИВАНИЯ ИЗ nasa_EPIC
-    # year, month, day = ('2023', '01', '31')  # a date of fotos
-    year, month, day = (input('Введите дату фото Земли в формате ДД-ММ-ГГГГ: '))
+    year, month, day = ('2023', '01', '31')  # a date of fotos
+    # year, month, day = (input('Введите дату фото Земли в формате ДД-ММ-ГГГГ: '))
     
     nasaapikey = '7ye1VhDS57wEwOOyxrz0YfNUYnkPRrOk8VjbSEg6'
     payload = {'api_key': f'{nasaapikey}'}
@@ -100,8 +98,8 @@ if __name__ == '__main__':
     idimagelist = takenasaepicidimagelist(all_files_url, payload)
 
     imagelist = []
-    for id in idimagelist:
-        imagelist.append(f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{id}.png')
+    for idimage in idimagelist:
+        imagelist.append(f'https://api.nasa.gov/EPIC/archive/natural/{year}/{month}/{day}/png/{idimage}.png')
     print(imagelist)
 
     firstimage = 0  # from the number of which image we download (0 - first)
@@ -116,10 +114,9 @@ if __name__ == '__main__':
     file_path = './Images/NASA/EPIC/'  # for NASA EPIC save
     file_name_pattern = 'nasa_epic_'  # for NASA EPIC save
 
-
     for file_number, file_url in enumerate(imagelist[firstimage:firstimage+numberimages]):
         # file_ext = ext_extract(file_url)  # for NASA APOD save
-        file_ext = '.png' # for NASA EPIC save
+        file_ext = '.png'  # for NASA EPIC save
         file_name = f'{file_name_pattern}{file_number+1}{file_ext}'
 
         print(file_ext)

@@ -1,6 +1,6 @@
 # own folders and files
-Photos
-**/Images
+Images/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
