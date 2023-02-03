@@ -1,9 +1,10 @@
 import requests
 from pathlib import Path
 from os import path
-# import os
+import os
 from urllib import parse
 # import datetime
+from dotenv import load_dotenv
 
 
 def get_image(urloffile, pathoffile, filename='', payloads=()):
@@ -70,6 +71,8 @@ def ext_extract(file_url_):
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    nasaapikey = os.getenv("NASAAPIKEY")
     # file_path = './Images/123/'  # first symbol is '.' if path is project directory continuation
     # file_url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
 
