@@ -1,7 +1,5 @@
 import requests
 from pathlib import Path
-from os import path
-from urllib import parse
 from dotenv import load_dotenv
 import os
 
@@ -12,7 +10,6 @@ def main():
 
     year, month, day = input('Введите дату фото Земли (в формате ГГГГ-ММ-ДД): ').split('-')  # date of fotos
     payload = {'api_key': nasa_api_key}
-    # payload = {'api_key': '7ye1VhDS57wEwOOyxrz0YfNUYnkPRrOk8VjbSEg6'}
     all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{year}-{month}-{day}'
     response = requests.get(all_images_url, params=payload)
     response.raise_for_status()

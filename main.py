@@ -1,14 +1,8 @@
-import requests
-from pathlib import Path
-from os import path
 import os
-from urllib import parse
-# import datetime
 from dotenv import load_dotenv
 import fetch_nasa_epic_images
 import fetch_spacex_images
 import fetch_nasa_apod_images
-
 
 
 if __name__ == '__main__':
