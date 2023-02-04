@@ -1,3 +1,171 @@
 # SpacePhotos
 
-cxcxc
+1. The script is designed to download photos of space using the SpaceX API of Elon Musk and the NASA website, and their publications on the Telegram channel
+
+
+### How to install?
+
+Python3 should already be installed.
+Then use pip (or pip3, there is a conflict with Python2) to install dependencies.
+Open the command line with the Win+R keys and enter:
+```
+pip install -r requirements.txt
+```
+It is recommended to use virtualenv/venv to isolate the project.
+(https://docs.python.org/3/library/venv.html)
+
+
+### Setting environment variables
+
+Before starting, you need to create a file ".env" in PATH_TO_THE_FOLDER_WITH_SCRIPT\ 
+and configure the environment variables by writing in it:
+```
+NASA_API_KEY=Your API_KEY
+```
+received on the site
+``
+https://api.nasa.gov/#apod
+
+```
+MULCHERBOT=Your bot token
+```
+received in Telegram using @BotFather
+```
+https://way23.ru/регистрация-бота-в-telegram.html
+```
+
+
+### The command to run the script:
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\маіп.ру [-h] url
+```
+where, 
+ -h, --help - view a short script help page 
+source_of_images - source of space images: (SpaceX, APOD, EPIC)
+If you have installed a virtual environment, then the command can be entered without the path to the script
+Scripts for downloading photos also work separately.
+The commands to run them have the following format.
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_spacex_images.py [-h] [id]
+```
+**_fetch_spacex_images.py_** - uploading all photos from the entered SpaceX launch code (by default, the last launch).
+Files are saved in the PATH_TO_THE_FOLDER_WITH_SCRIPT/Images/SpaceX/
+
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_nasa_epic_images.py [-h] [date_image]
+```
+- **_fetch_nasa_apod_images.py_** - uploading a photo of the Earth from NASA EPIC by the entered date 
+- in the format DD.MM.YYYY (by default - the current date);
+Files are saved in the PATH_TO_THE_FOLDER_WITH_SCRIPT/Images/NASA/EPIC/
+
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_nasa_apod_images.py [-h] [start_date] [end_date]
+```
+**_fetch_nasa_apod_images.py_** - uploading photos from NASA APOD by entered dates from- to-
+- start_date - start date in DD.MM.YYYY format (by default - current date);
+- end_date - the end date in the format DD.MM.YYYY (by default - the current date);
+
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\image_time_post.py [-h] [directory] [pause]
+```
+**_image_time_post.py_** - a script for publishing photos. Publishes all photos from a given directory every few
+hours (1 hour = 3600 sec). The pause is set in seconds.
+When all the photos from the directory are published, he begins to publish them again, shuffling the photos in random order.
+But there is one caveat :)
+- by default, the delay is set to 4 hours;
+- if you set the publication every 4 hours, the photos will be published once every 4 hours.
+The delay is set in the script launch line.
+- directory - location of photos (full path);
+- pause - the delay between publications in seconds.
+
+
+### Project Goals
+This code was written for educational purposes as part of an online course for web developers at [dvmn.org](https://dvmn.org/).
+
+
+
+# SpacePhotos (фотографии космоса)
+
+1. Скрипт предназначен для скачивания фотографий космоса по API SpaceX Илона Маска и сайта NASA, а также их публикаций 
+на канале Telegram
+  
+
+### Как установить?
+
+Python3 должен быть уже установлен. 
+Затем используйте pip (или pip3, есть конфликт с Python2) для установки зависимостей.
+Открываем командную строку клавишами Win+R и вводим:
+```
+pip install -r requirements.txt
+```
+Рекомендуется использовать virtualenv/venv для изоляции проекта.
+(https://docs.python.org/3/library/venv.html)
+
+
+### Настройка переменных окружения
+
+До запуска необходимо создать файл ".env" в папке ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\
+и настроить переменные окружения, прописав в нем:
+```
+NASA_API_KEY=Ваш API_KEY
+```
+полученный на сайте
+```
+https://api.nasa.gov/#apod
+```
+```
+MULCHERBOT=токен Вашего бота
+```
+полученный в Telegram с помощью @BotFather 
+```
+https://way23.ru/регистрация-бота-в-telegram.html
+```
+
+
+### Команда на запуск скрипта:
+```
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\main.py [-h] url
+```
+где,
+  -h, --help - просмотр короткой страницы помощи по скрипту
+  source_of_images - источник снимков космоса: (SpaceX, APOD, EPIC)
+Если вы установили виртуальное окружение, то команду можно вводить без пути к скрипту
+Скрипты по скачиванию фотографий также работают по отдельности.
+Команды на их запуск имеют следующий формат.
+```
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_spacex_images.py [-h] [id] 
+```
+**_fetch_spacex_images.py_** - загрузка всех фото из введенного кода запуска SpaceX (по умолчанию - последний запуск).
+Файлы сохраняются в ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ/Images/SpaceX/
+
+```
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_nasa_epic_images.py [-h] [date_image]
+```
+- **_fetch_nasa_apod_images.py_** - загрузка фото Земли из NASA EPIC по введенной дате в формате ДД.ММ.ГГГГ 
+(по умолчанию - текущая дата);
+Файлы сохраняются в ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ/Images/NASA/EPIC/
+
+```
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_nasa_apod_images.py [-h] [start_date] [end_date]
+```
+**_fetch_nasa_apod_images.py_** - загрузка фото из NASA APOD по введенным датам с- по-
+- start_date - начальная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата);
+- end_date - конечная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата);
+
+```
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [directory] [pause]
+```
+**_image_time_post.py_** - скрипт публикации фотографий. Публикует все фотографии из заданной директории раз в несколько 
+часов (1 час = 3600 сек). Пауза задается в секундах.
+Когда все фото из директории опубликованы – он начинает публиковать их заново, перемешав фото в случайном порядке.
+Но есть один нюанс :)
+- по умолчанию задержка выставлена в 4 часа;
+- если задать публикацию раз в 4 часа – фото будут публиковаться по одному раз в 4 часа.
+Задержка задается в строке запуска скрипта.
+- directory - местоположение фотографий (полный путь);
+- pause - задержка между публикациями в секундах.
+
+
+### Цель проекта
+Код написан в образовательных целях на онлайн-курсе для веб-разработчиков dvmn.org.
+
