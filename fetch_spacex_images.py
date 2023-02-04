@@ -8,8 +8,9 @@ import argparse
 def main():
     parserSpaceX = argparse.ArgumentParser(description='Ввод ID запуска для SpaceX (по умолчанию - последний запуск)')
     parserSpaceX.add_argument(
-        '-id',
-        help='загрузка фото по введенному после -id коду запуска SpaceX'
+        'id',
+        nargs='?',
+        help='загрузка фото по введенному коду запуска SpaceX'
     )
 
     id_launch = parserSpaceX.parse_args().id
