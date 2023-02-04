@@ -1,10 +1,9 @@
-from pathlib import Path
 from os import path
 import requests
 from urllib import parse
 
 
-def file_save(images_list, file_path, file_name_pattern, payload):
+def file_save(images_list, file_path, file_name_pattern, payload=''):
     numbers_of_file = 0
     for file_number, file_url in enumerate(images_list):
         file_ext = path.splitext(parse.urlsplit(file_url).path)[1]

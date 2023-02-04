@@ -24,7 +24,6 @@ def main():
     print(day, month, year)
     payload = {'api_key': nasa_api_key}
     all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{year}-{month}-{day}'
-    print(all_images_url)
     response = requests.get(all_images_url, params=payload)
     response.raise_for_status()
 
@@ -40,22 +39,7 @@ def main():
 
     file_path = f'{path.dirname(__file__)}/Images/NASA/EPIC/'
     Path(file_path).mkdir(parents=True, exist_ok=True)
-
     file_name_pattern = f'nasa_epic_{day}.{month}.{year}_'
-    # file_ext = '.png'  # for NASA EPIC save
-
-    # numbers_of_file = 0
-    # for file_number, file_url in enumerate(images_list):
-    #     file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
-    #     file_name = f'{file_name_pattern}{file_number + 1}{file_ext}'
-    #
-    #     headers = {'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)'}
-    #     response = requests.get(file_url, headers=headers, params=payload)
-    #     response.raise_for_status()
-    #
-    #     with open(f'{file_path}{file_name}', 'wb') as file:
-    #         file.write(response.content)
-    #         numbers_of_file += 1
 
     numbers_of_file = functions.file_save(images_list, file_path, file_name_pattern, payload)
 

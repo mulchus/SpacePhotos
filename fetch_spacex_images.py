@@ -1,19 +1,19 @@
 import requests
 from pathlib import Path
 from os import path
-from urllib import parse
 import argparse
+import functions
 
 
 def main():
-    parserSpaceX = argparse.ArgumentParser(description='Ввод ID запуска для SpaceX (по умолчанию - последний запуск)')
-    parserSpaceX.add_argument(
+    parser_spacex = argparse.ArgumentParser(description='Ввод ID запуска для SpaceX (по умолчанию - последний запуск)')
+    parser_spacex.add_argument(
         'id',
         nargs='?',
         help='загрузка фото по введенному коду запуска SpaceX'
     )
 
-    id_launch = parserSpaceX.parse_args().id
+    id_launch = parser_spacex.parse_args().id
 
     if not id_launch:
         response = requests.get('https://api.spacexdata.com/v5/launches/latest')
@@ -27,22 +27,11 @@ def main():
 
     images_list = response.json()['links']['flickr']['original']
 
-    file_path = f'{path.dirname(__file__)}/Images/SpaceX/'  # first symbol is '.' if path is project directory continuation
+    file_path = f'{path.dirname(__file__)}/Images/SpaceX/'
     Path(file_path).mkdir(parents=True, exist_ok=True)
-
     file_name_pattern = 'spacex_'
-    numbers_of_file = 0
-    for file_number, file_url in enumerate(images_list):
-        file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
-        file_name = f'{file_name_pattern}{file_number + 1}{file_ext}'
 
-        headers = {'User-Agent': 'CoolBot/0.0 (https://example.org/coolbot/; coolbot@example.org)'}
-        response = requests.get(file_url, headers=headers)
-        response.raise_for_status()
-
-        with open(f'{file_path}{file_name}', 'wb') as file:
-            file.write(response.content)
-        numbers_of_file += 1
+    numbers_of_file = functions.file_save(images_list, file_path, file_name_pattern)
 
     print(f'Скачивание запуска ID {id_launch} завершено\n Скачано {numbers_of_file} фото')
 

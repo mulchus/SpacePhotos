@@ -1,24 +1,27 @@
-import os
-from dotenv import load_dotenv
 import fetch_nasa_epic_images
 import fetch_spacex_images
 import fetch_nasa_apod_images
+import argparse
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    nasa_api_key = os.getenv("NASA_API_KEY")
-
     while True:
-        image_type = input('Какие фото скачиваем? (SpaceX or APOD or EPIC): ')
+        parser_main = argparse.ArgumentParser(description='Загрузка снимков космоса')
+        parser_main.add_argument(
+            'source_of_images',
+            help='ввод источника снимков космоса: (SpaceX or APOD or EPIC)'
+        )
 
-        if image_type == 'SpaceX':
+        source_input = parser_main.parse_args().source_of_images
+        print(source_input)
+
+        if source_input == 'SpaceX':
             fetch_spacex_images.main()
 
-        elif image_type == 'APOD':
+        elif source_input == 'APOD':
             fetch_nasa_apod_images.main()
 
-        elif image_type == 'EPIC':
+        elif source_input == 'EPIC':
             fetch_nasa_epic_images.main()
 
         else:
