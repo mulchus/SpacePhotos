@@ -4,14 +4,38 @@ from os import path
 from urllib import parse
 from dotenv import load_dotenv
 import os
+import argparse
+import datetime
 
 
 def main():
     load_dotenv()
     nasa_api_key = os.getenv("NASA_API_KEY")
 
-    start_date = input('С какой даты выгружать? (в формате ГГГГ-ММ-ДД): ')
-    end_date = input('По какую дату выгружать? (в формате ГГГГ-ММ-ДД, без даты - это сегодня): ')
+    parser_apod = argparse.ArgumentParser(description='Загрузка фото из NASA APOD по введенным датам с- по-')
+    parser_apod.add_argument(
+        'start_date',
+        nargs='?',
+        default=datetime.datetime.today().strftime('%d.%m.%Y'),
+        help='начальная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
+    )
+    parser_apod.add_argument(
+        'end_date',
+        nargs='?',
+        default=datetime.datetime.today().strftime('%d.%m.%Y'),
+        help='конечная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
+    )
+
+    s_day, s_month, s_year = parser_apod.parse_args().start_date.split('.')
+    e_day, e_month, e_year = parser_apod.parse_args().end_date.split('.')
+
+    # date of fotos
+    print(f'{s_year}-{s_month}-{s_day}', f'{e_year}-{e_month}-{e_day}')
+
+    start_date = f'{s_year}-{s_month}-{s_day}'
+    end_date = f'{e_year}-{e_month}-{e_day}'
+
+
     payload = {'api_key': nasa_api_key, 'start_date': start_date, 'end_date': end_date, }
     all_files_url = 'https://api.nasa.gov/planetary/apod'
 
@@ -23,11 +47,12 @@ def main():
         if nasa_record['url']:
             images_list.append(nasa_record['url'])
 
-    file_path = './Images/NASA/APOD/'  # for NASA APOD save
+    file_path = f'{path.dirname(__file__)}/Images/NASA/APOD/'
     Path(file_path).mkdir(parents=True, exist_ok=True)
 
     file_name_pattern = 'nasa_apod_'  # for NASA APOD save
 
+    numbers_of_file = 0
     for file_number, file_url in enumerate(images_list):
         file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
         file_name = f'{file_name_pattern}{file_number + 1}{file_ext}'
@@ -38,5 +63,10 @@ def main():
 
         with open(f'{file_path}{file_name}', 'wb') as file:
             file.write(response.content)
+            numbers_of_file += 1
 
-    print(f'Скачивание фото с {start_date} по.{end_date} завершено\n')
+    print(f'Скачивание фото с {start_date} по.{end_date} завершено. Скачано {numbers_of_file} шт.\n')
+
+
+if __name__ == '__main__':
+    main()
