@@ -1,17 +1,13 @@
 import requests
 from pathlib import Path
-from dotenv import load_dotenv
-import os
 import argparse
 import datetime
 from os import path
 import functions
+import constants
 
 
 def main():
-    load_dotenv()
-    nasa_api_key = os.getenv("NASA_API_KEY")
-
     parser_epic = argparse.ArgumentParser(description='Загрузка фото Земли из NASA EPIC по введенной дате')
     parser_epic.add_argument(
         'date_image',
@@ -22,7 +18,7 @@ def main():
 
     day, month, year = parser_epic.parse_args().date_image.split('.')  # date of fotos
     print(day, month, year)
-    payload = {'api_key': nasa_api_key}
+    payload = {'api_key': constants.nasa_api_key}
     all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{year}-{month}-{day}'
     response = requests.get(all_images_url, params=payload)
     response.raise_for_status()
