@@ -5,7 +5,7 @@ import constants
 bot = telegram.Bot(token=constants.bot_token)
 
 
-Adef last_chat_id():
+def last_chat_id():
     return bot.get_updates()[-1]['message']['chat']['id']
 
 
