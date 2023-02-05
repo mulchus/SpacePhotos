@@ -17,8 +17,8 @@ print(onlyfiles)
 
 while True:
     for file in onlyfiles:
-        # mulcherbot.bot_send_photo(constants.chat_id, f'{directory}{file}')
-        mulcherbot.bot_send_message(file, constants.chat_id)
+        mulcherbot.bot_send_photo(constants.chat_id, f'{directory}{file}')
+        # mulcherbot.bot_send_message(file, constants.chat_id)
         time.sleep(pause) if pause == constants.pause_beetwen_posts else time.sleep(3)  # хитрые паузы согласно заданию
     shuffle(onlyfiles)
     print(onlyfiles)
