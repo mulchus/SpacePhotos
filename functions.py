@@ -28,7 +28,7 @@ def path_of_files(start_dir):  # make a list of paths for all files in start dir
     return file_paths
 
 
-def paths_of_files_in_dir(directory):  # make a list of paths for all files in directory
+def path_of_files_in_dir(directory):  # make a list of paths for all files in directory
     # onlyfiles = []
     # for (dirpath, dirnames, filenames) in os.walk(directory):
     #     for filename in filenames:
@@ -40,7 +40,7 @@ def paths_of_files_in_dir(directory):  # make a list of paths for all files in d
 
 def main():
     # print(path_of_files(f'{path.dirname(__file__)}/Images/'))
-    print(paths_of_files_in_dir(f'{path.dirname(__file__)}/Images/SpaceX'))
+    print(path_of_files_in_dir(f'{path.dirname(__file__)}/Images/SpaceX'))
     print(os.listdir(f'{path.dirname(__file__)}/Images/NASA'))
 
 
