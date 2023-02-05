@@ -1,6 +1,7 @@
 # SpacePhotos
 
-1. The script is designed to download photos of space using the SpaceX API of Elon Musk and the NASA website, and their publications on the Telegram channel
+1. The script is designed to download photos of space using the SpaceX API of Elon Musk and the NASA website, 
+and their publications on the Telegram channel
 
 
 ### How to install?
@@ -70,7 +71,8 @@ python PATH_TO_THE_FOLDER_WITH_SCRIPT\image_time_post.py [-h] [directory] [pause
 ```
 **_image_time_post.py_** - a script for publishing photos. Publishes all photos from a given directory every few
 hours (1 hour = 3600 sec). The pause is set in seconds.
-When all the photos from the directory are published, he begins to publish them again, shuffling the photos in random order.
+When all the photos from the directory are published, he begins to publish them again, shuffling the photos 
+in random order.
 But there is one caveat :)
 - by default, the delay is set to 4 hours;
 - if you set the publication every 4 hours, the photos will be published once every 4 hours.
@@ -78,9 +80,16 @@ The delay is set in the script launch line.
 - directory - location of photos (full path);
 - pause - the delay between publications in seconds.
 
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
+```
+**_specified_photo_post.py_** - a script to publish a photo on a specific path. If the file is not found, a random 
+photo is published from all available photos (folder tree, starting with PATH_TO_THE_FOLDER_WITH_SCRIPT\Image\)
+
 
 ### Project Goals
-This code was written for educational purposes as part of an online course for web developers at [dvmn.org](https://dvmn.org/).
+This code was written for educational purposes as part of an online course for web developers at [dvmn.org]
+(https://dvmn.org/).
 
 
 
@@ -164,6 +173,12 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [dir
 Задержка задается в строке запуска скрипта.
 - directory - местоположение фотографий (полный путь);
 - pause - задержка между публикациями в секундах.
+
+```
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
+```
+**_specified_photo_post.py_** - скрипт для публикации фото по конкретному пути. Если файл не найден - публикуется 
+случайное фото из всех имеющихся фотографий (дерево папок, начиная с PATH_TO_THE_FOLDER_WITH_SCRIPT\Image\)
 
 
 ### Цель проекта
