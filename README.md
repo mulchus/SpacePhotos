@@ -34,6 +34,12 @@ received in Telegram using @BotFather
 ```
 https://way23.ru/регистрация-бота-в-telegram.html
 ```
+CHAT_ID=ID of your Telegram chanel or supergroup
+```
+How to know? See in 
+```
+https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
+```
 
 
 ### The command to run the script:
@@ -128,6 +134,12 @@ MULCHERBOT=токен Вашего бота
 полученный в Telegram с помощью @BotFather 
 ```
 https://way23.ru/регистрация-бота-в-telegram.html
+```
+CHAT_ID=ID вашего Telegram канала или чата
+```
+Как узнать? Смотрите в 
+```
+https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 ```
 
 
