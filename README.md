@@ -34,7 +34,8 @@ received in Telegram using @BotFather
 ```
 https://way23.ru/регистрация-бота-в-telegram.html
 ```
-CHAT_ID=ID of your Telegram chanel or supergroup
+```
+CHAT_ID - ID of your Telegram chanel or supergroup
 ```
 How to know? See in 
 ```
@@ -135,7 +136,8 @@ MULCHERBOT=токен Вашего бота
 ```
 https://way23.ru/регистрация-бота-в-telegram.html
 ```
-CHAT_ID=ID вашего Telegram канала или чата
+```
+CHAT_ID - ID вашего Telegram канала или чата
 ```
 Как узнать? Смотрите в 
 ```
