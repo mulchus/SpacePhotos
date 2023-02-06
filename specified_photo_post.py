@@ -1,9 +1,10 @@
 from sys import argv
 import os
-import functions
 import constants
+import functions
 import mulcherbot
 import random
+from dotenv import load_dotenv
 
 
 path = argv[1]
@@ -14,11 +15,5 @@ else:
     mulcherbot.bot_send_photo(constants.chat_id, random_photo)
 
 
-def main():
-    # for i in mulcherbot.bot.get_updates():
-    #     print(f'{i}\n')
-    pass
-
-
 if __name__ == '__main__':
-    main()
+    load_dotenv()
