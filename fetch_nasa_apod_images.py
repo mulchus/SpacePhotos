@@ -22,12 +22,20 @@ parser_apod.add_argument(
     help='конечная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
 )
 
-s_day, s_month, s_year = parser_apod.parse_args().start_date.split('.')
-e_day, e_month, e_year = parser_apod.parse_args().end_date.split('.')
+try:
+    print(datetime.datetime.strptime(parser_apod.parse_args().start_date, "%d.%m.%Y").date())
+except ValueError:
+    print('Неверно введена еачальная дата')
+    exit()
+try:
+    print(datetime.datetime.strptime(parser_apod.parse_args().end_date, "%d.%m.%Y").date())
+except ValueError:
+    print('Неверно введена конечная дата')
+    exit()
 
 # date of fotos
-start_date = f'{s_year}-{s_month}-{s_day}'
-end_date = f'{e_year}-{e_month}-{e_day}'
+start_date = datetime.datetime.strptime(parser_apod.parse_args().start_date, "%d.%m.%Y").date().strftime("%Y-%m-%d")
+end_date = datetime.datetime.strptime(parser_apod.parse_args().end_date, "%d.%m.%Y").date().strftime("%Y-%m-%d")
 
 payload = {'api_key': constants.nasa_api_key, 'start_date': start_date, 'end_date': end_date}
 all_files_url = 'https://api.nasa.gov/planetary/apod'
