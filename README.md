@@ -1,7 +1,9 @@
 # SpacePhotos
 
-1. The script is designed to download photos of space using the SpaceX API of Elon Musk and the NASA website, 
+1. The project is designed to download photos of space using the SpaceX API of Elon Musk and the NASA website, 
 and their publications on the Telegram channel
+2. The project publishes in the Telegram channel photos from a given directory with a given frequency or a 
+specifically selected photo
 
 
 ### How to install?
@@ -41,6 +43,10 @@ How to know? See in
 ```
 https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 ```
+```
+SPECIAL_PAUSE=14400 - A special pause, set in seconds (14400)
+```
+is applied according to the task when publishing images on the channel
 
 
 ### The command to run the script:
@@ -74,7 +80,7 @@ python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_nasa_apod_images.py [-h] [start_date
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\image_time_post.py [-h] [directory] [pause]
 ```
 **_image_time_post.py_** - a script for publishing photos. Publishes all photos from a given directory every few
-hours (1 hour = 3600 sec). The pause is set in seconds.
+hours (1 hour = 3600 sec). 
 When all the photos from the directory are published, he begins to publish them again, shuffling the photos 
 in random order.
 But there is one caveat :)
@@ -83,7 +89,7 @@ But there is one caveat :)
 The delay is set in the script launch line.
 - directory - location of photos (full path);
 - pause - the delay between publications in seconds.
-
+A special pause is set in seconds (14400) in the ".env" file.
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
 ```
@@ -99,9 +105,11 @@ This code was written for educational purposes as part of an online course for w
 
 # SpacePhotos (фотографии космоса)
 
-1. Скрипт предназначен для скачивания фотографий космоса по API SpaceX Илона Маска и сайта NASA, а также их публикаций 
+1. Проект предназначен для скачивания фотографий космоса по API SpaceX Илона Маска и сайта NASA, а также их публикаций 
 на канале Telegram
-  
+2. Проект публикует в Telegram-канале фотографии из заданной директории с заданной периодичностью или конкретно 
+выбранной фотографии  
+
 
 ### Как установить?
 
@@ -140,6 +148,10 @@ CHAT_ID - ID вашего Telegram канала или чата
 ```
 https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 ```
+```
+SPECIAL_PAUSE=14400 - Специальная пауза, задается в секундах (14400)
+```
+применяется согласно заданию при публикации изображений на канале
 
 
 ### Команда на запуск скрипта:
@@ -173,7 +185,7 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_nasa_apod_images.py [-
 python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [directory] [pause]
 ```
 **_image_time_post.py_** - скрипт публикации фотографий. Публикует все фотографии из заданной директории раз в несколько 
-часов (1 час = 3600 сек). Пауза задается в секундах.
+часов (1 час = 3600 сек).
 Когда все фото из директории опубликованы – он начинает публиковать их заново, перемешав фото в случайном порядке.
 Но есть один нюанс :)
 - по умолчанию задержка выставлена в 4 часа;
@@ -181,6 +193,7 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [dir
 Задержка задается в строке запуска скрипта.
 - directory - местоположение фотографий (полный путь);
 - pause - задержка между публикациями в секундах.
+Специальная пауза задается в секундах (14400) в файлe ".env".
 
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
