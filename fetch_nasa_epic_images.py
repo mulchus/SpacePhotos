@@ -1,6 +1,5 @@
 import requests
 from pathlib import Path
-from os import path
 import argparse
 import datetime
 import functions
@@ -39,11 +38,11 @@ for idimage in idimages:
     images.append(f'https://api.nasa.gov/EPIC/archive/natural/{date.strftime("%Y/%m/%d")}/png/{idimage}.png')
 
 year, month, day = date.strftime("%Y/%m/%d").split('/')
-file_path = f'{path.dirname(__file__)}/Images/NASA/EPIC/'
-Path(file_path).mkdir(parents=True, exist_ok=True)
-file_name_pattern = f'nasa_epic_{day}.{month}.{year}_'
 
-numbers_of_file = functions.file_save(images, file_path, file_name_pattern, payload)
+Path(Path.cwd() / 'Images' / 'NASA' / 'EPIC').mkdir(parents=True, exist_ok=True)
+file_path = Path.cwd() / 'Images' / 'NASA' / 'EPIC' / f'nasa_epic_{day}.{month}.{year}_'
+
+numbers_of_file = functions.file_save(images, file_path, payload)
 
 print(f'Скачивание фото Земли от {day}.{month}.{year} завершено. Скачано {numbers_of_file} шт.\n')
 

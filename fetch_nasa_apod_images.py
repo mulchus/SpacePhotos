@@ -1,6 +1,5 @@
 import requests
 from pathlib import Path
-from os import path
 import argparse
 import datetime
 import functions
@@ -46,14 +45,13 @@ response.raise_for_status()
 # generating a list of all image
 images = []
 for nasa_record in response.json():
-    if nasa_record['media_type']=='image' and nasa_record['url']:
+    if nasa_record['media_type'] == 'image' and nasa_record['url']:
         images.append(nasa_record['url'])
 
-file_path = f'{path.dirname(__file__)}/Images/NASA/APOD/'
-Path(file_path).mkdir(parents=True, exist_ok=True)
-file_name_pattern = 'nasa_apod_'  # for NASA APOD save
+Path(Path.cwd() / 'Images' / 'NASA' / 'APOD').mkdir(parents=True, exist_ok=True)
+file_path = Path.cwd() / 'Images' / 'NASA' / 'APOD' / 'nasa_apod_'
 
-numbers_of_file = functions.file_save(images, file_path, file_name_pattern, payload)
+numbers_of_file = functions.file_save(images, file_path, payload)
 
 print(f'Скачивание фото с {start_date} по.{end_date} завершено. Скачано {numbers_of_file} шт.\n')
 

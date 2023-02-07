@@ -19,11 +19,10 @@ def main():
 
     images = response.json()['links']['flickr']['original']
 
-    file_path = f'{path.dirname(__file__)}/Images/SpaceX/'
-    Path(file_path).mkdir(parents=True, exist_ok=True)
-    file_name_pattern = 'spacex_'
+    Path(Path.cwd() / 'Images' / 'SpaceX').mkdir(parents=True, exist_ok=True)
+    file_path = Path.cwd() / 'Images' / 'SpaceX' / 'spacex_'
 
-    numbers_of_file = functions.file_save(images, file_path, file_name_pattern)
+    numbers_of_file = functions.file_save(images, file_path)
 
     print(f'Скачивание запуска ID {id_launch} завершено\n Скачано {numbers_of_file} фото')
 
