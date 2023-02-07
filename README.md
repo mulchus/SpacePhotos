@@ -28,7 +28,7 @@ received on the site
 https://api.nasa.gov/#apod
 
 ```
-MULCHERBOT=Your bot token
+TELEGRAM_BOT_TOKEN=Your bot token
 ```
 received in Telegram using @BotFather
 ```
@@ -45,14 +45,11 @@ https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 
 ### The command to run the script:
 ```
-python PATH_TO_THE_FOLDER_WITH_SCRIPT\маіп.ру [-h] url
+python PATH_TO_THE_FOLDER_WITH_SCRIPT\...
 ```
-where, 
- -h, --help - view a short script help page 
-source_of_images - source of space images: (SpaceX, APOD, EPIC)
 If you have installed a virtual environment, then the command can be entered without the path to the script
-Scripts for downloading photos also work separately.
-The commands to run them have the following format.
+Scripts for downloading photos work separately.
+The commands to run them have the following format:
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_spacex_images.py [-h] [id]
 ```
@@ -62,7 +59,7 @@ Files are saved in the PATH_TO_THE_FOLDER_WITH_SCRIPT/Images/SpaceX/
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\fetch_nasa_epic_images.py [-h] [date_image]
 ```
-- **_fetch_nasa_apod_images.py_** - uploading a photo of the Earth from NASA EPIC by the entered date 
+**_fetch_nasa_apod_images.py_** - uploading a photo of the Earth from NASA EPIC by the entered date 
 - in the format DD.MM.YYYY (by default - the current date);
 Files are saved in the PATH_TO_THE_FOLDER_WITH_SCRIPT/Images/NASA/EPIC/
 
@@ -130,7 +127,7 @@ NASA_API_KEY=Ваш API_KEY
 https://api.nasa.gov/#apod
 ```
 ```
-MULCHERBOT=токен Вашего бота
+TELEGRAM_BOT_TOKEN=токен Вашего бота
 ```
 полученный в Telegram с помощью @BotFather 
 ```
@@ -147,14 +144,11 @@ https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 
 ### Команда на запуск скрипта:
 ```
-python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\main.py [-h] url
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\...
 ```
-где,
-  -h, --help - просмотр короткой страницы помощи по скрипту
-  source_of_images - источник снимков космоса: (SpaceX, APOD, EPIC)
 Если вы установили виртуальное окружение, то команду можно вводить без пути к скрипту
-Скрипты по скачиванию фотографий также работают по отдельности.
-Команды на их запуск имеют следующий формат.
+Скрипты по скачиванию фотографий работают по отдельности.
+Команды на их запуск имеют следующий формат:
 ```
 python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_spacex_images.py [-h] [id] 
 ```
@@ -164,7 +158,7 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_spacex_images.py [-h] 
 ```
 python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\fetch_nasa_epic_images.py [-h] [date_image]
 ```
-- **_fetch_nasa_apod_images.py_** - загрузка фото Земли из NASA EPIC по введенной дате в формате ДД.ММ.ГГГГ 
+**_fetch_nasa_apod_images.py_** - загрузка фото Земли из NASA EPIC по введенной дате в формате ДД.ММ.ГГГГ 
 (по умолчанию - текущая дата);
 Файлы сохраняются в ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ/Images/NASA/EPIC/
 
