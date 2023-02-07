@@ -1,6 +1,5 @@
 import requests
 from pathlib import Path
-from os import path
 import argparse
 import functions
 
