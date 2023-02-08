@@ -25,19 +25,19 @@ def main():
     )
 
     try:
-        print(datetime.datetime.strptime(parser_apod.parse_args().start_date, "%d.%m.%Y").date())
+        functions.format_date(parser_apod.parse_args().start_date)
     except ValueError:
         print('Неверно введена начальная дата')
         exit()
     try:
-        print(datetime.datetime.strptime(parser_apod.parse_args().end_date, "%d.%m.%Y").date())
+        functions.format_date(parser_apod.parse_args().end_date)
     except ValueError:
         print('Неверно введена конечная дата')
         exit()
 
     # date of fotos
-    start_date = datetime.datetime.strptime(parser_apod.parse_args().start_date, "%d.%m.%Y").date().strftime("%Y-%m-%d")
-    end_date = datetime.datetime.strptime(parser_apod.parse_args().end_date, "%d.%m.%Y").date().strftime("%Y-%m-%d")
+    _, start_date, _ = functions.format_date(parser_apod.parse_args().start_date)
+    _, end_date, _ = functions.format_date(parser_apod.parse_args().end_date)
 
     payload = {'api_key': nasa_api_key, 'start_date': start_date, 'end_date': end_date}
     all_files_url = 'https://api.nasa.gov/planetary/apod'

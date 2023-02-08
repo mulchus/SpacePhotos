@@ -2,6 +2,7 @@ from os import path
 import requests
 from urllib import parse
 import os
+from datetime import datetime
 
 
 def save_file(images, file_path, payload=''):
@@ -24,3 +25,8 @@ def get_paths_of_files(start_dir):  # make a list of paths for all files in star
         for filename in files:
             file_paths.append(os.path.abspath(os.path.join(folder, filename)))
     return file_paths
+
+
+def format_date(date_in_string):
+    date_ = datetime.strptime(date_in_string, "%d.%m.%Y").date()
+    return date_, date_.strftime("%Y-%m-%d"), date_.strftime("%Y/%m/%d")

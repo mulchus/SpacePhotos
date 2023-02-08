@@ -19,14 +19,14 @@ def main():
     )
 
     try:
-        print(datetime.datetime.strptime(parser_epic.parse_args().date_image, "%d.%m.%Y").date())
+        functions.format_date(parser_epic.parse_args().date_image)
     except ValueError:
         print('Неверно введена дата')
         exit()
 
-    date = datetime.datetime.strptime(parser_epic.parse_args().date_image, "%d.%m.%Y").date()
+    _, date, date_ = functions.format_date(parser_epic.parse_args().date_image)
     payload = {'api_key': nasa_api_key}
-    all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{date.strftime("%Y-%m-%d")}'
+    all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
     response = requests.get(all_images_url, params=payload)
     response.raise_for_status()
 
@@ -38,9 +38,9 @@ def main():
 
     images = []
     for idimage in idimages:
-        images.append(f'https://api.nasa.gov/EPIC/archive/natural/{date.strftime("%Y/%m/%d")}/png/{idimage}.png')
+        images.append(f'https://api.nasa.gov/EPIC/archive/natural/{date_}/png/{idimage}.png')
 
-    year, month, day = date.strftime("%Y/%m/%d").split('/')
+    year, month, day = date_.split('/')
 
     Path(Path.cwd() / 'Images' / 'NASA' / 'EPIC').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'NASA' / 'EPIC' / f'nasa_epic_{day}.{month}.{year}_'
