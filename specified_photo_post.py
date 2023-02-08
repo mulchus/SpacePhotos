@@ -11,7 +11,11 @@ def main():
     load_dotenv()
     telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
-    path = argv[1]
+    try:
+        path = argv[1]
+    except IndexError:
+        print('Не указан путь к папке с файлами!')
+        exit()
     if os.path.isfile(path):
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, path)
     else:
