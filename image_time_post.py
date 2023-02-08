@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 def main():
     load_dotenv()
     special_pause = int(os.environ['SPECIAL_PAUSE'])
-    telegram_chat_id = os.environ['CHAT_ID']
+    telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     directory = argv[1]
     pause = int(argv[2])

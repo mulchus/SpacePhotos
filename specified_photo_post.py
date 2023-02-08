@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 def main():
     load_dotenv()
-    telegram_chat_id = os.environ['CHAT_ID']
+    telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     path = argv[1]
     if os.path.isfile(path):
