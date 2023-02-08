@@ -54,7 +54,7 @@ def main():
     Path(Path.cwd() / 'Images' / 'NASA' / 'APOD').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'NASA' / 'APOD' / 'nasa_apod_'
 
-    numbers_of_file = functions.file_save(images, file_path, payload)
+    numbers_of_file = functions.save_file(images, file_path, payload)
 
     print(f'Скачивание фото с {start_date} по.{end_date} завершено. Скачано {numbers_of_file} шт.\n')
 

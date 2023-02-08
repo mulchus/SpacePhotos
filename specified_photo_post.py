@@ -15,7 +15,7 @@ def main():
     if os.path.isfile(path):
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, path)
     else:
-        random_photo = random.choice(functions.path_of_files(Path.cwd() / 'Images'))
+        random_photo = random.choice(functions.get_paths_of_files(Path.cwd() / 'Images'))
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, random_photo)
 
 

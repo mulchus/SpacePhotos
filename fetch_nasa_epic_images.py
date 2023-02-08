@@ -45,7 +45,7 @@ def main():
     Path(Path.cwd() / 'Images' / 'NASA' / 'EPIC').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'NASA' / 'EPIC' / f'nasa_epic_{day}.{month}.{year}_'
 
-    numbers_of_file = functions.file_save(images, file_path, payload)
+    numbers_of_file = functions.save_file(images, file_path, payload)
 
     print(f'Скачивание фото Земли от {day}.{month}.{year} завершено. Скачано {numbers_of_file} шт.\n')
 

@@ -21,7 +21,7 @@ def main():
     Path(Path.cwd() / 'Images' / 'SpaceX').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'SpaceX' / 'spacex_'
 
-    numbers_of_file = functions.file_save(images, file_path)
+    numbers_of_file = functions.save_file(images, file_path)
 
     print(f'Скачивание запуска ID {id_launch} завершено\n Скачано {numbers_of_file} фото')
 

@@ -4,7 +4,7 @@ from urllib import parse
 import os
 
 
-def file_save(images, file_path, payload=''):
+def save_file(images, file_path, payload=''):
     numbers_of_file = 0
     for file_number, file_url in enumerate(images, start=1):
         file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
@@ -18,7 +18,7 @@ def file_save(images, file_path, payload=''):
     return numbers_of_file
 
 
-def path_of_files(start_dir):  # make a list of paths for all files in start directory
+def get_paths_of_files(start_dir):  # make a list of paths for all files in start directory
     file_paths = []
     for folder, _, files in os.walk(start_dir):
         for filename in files:
