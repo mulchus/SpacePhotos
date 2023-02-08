@@ -1,7 +1,6 @@
 from sys import argv
 import time
 from os import listdir, path
-from pathlib import Path
 import os
 import telegram_bot
 from random import shuffle
@@ -14,20 +13,16 @@ def main():
     telegram_chat_id = os.environ['TELEGRAM_CHAT_ID']
     telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     try:
-        directory = argv[1]
+        directory = argv[1] if argv[1] else os.getcwd()
     except IndexError:
-        directory = Path.cwd() / 'Images' / 'SpaceX'
+        directory = ''
+        print('Не указан путь к папке с файлами!')
+        exit()
     try:
         pause = int(argv[2])
     except IndexError:
+        print(f'По умолчанию задана пауза = {special_pause}!')
         pause = special_pause
-
-    print(directory)
-    # directory = argv[1] if argv[1] else os.getcwd()
-    # pause = int(argv[2]) if argv[2] else special_pause
-
-    # if not pause:
-    #     pause = 2
 
     onlyfiles = [f for f in listdir(directory) if path.isfile(path.join(directory, f))]
 
