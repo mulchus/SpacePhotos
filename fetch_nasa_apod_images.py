@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
+    nasa_api_key = os.environ['NASA_API_KEY']
     parser_apod = argparse.ArgumentParser(description='Загрузка фото из NASA APOD по введенным датам с- по-')
     parser_apod.add_argument(
         'start_date',
@@ -25,7 +27,7 @@ def main():
     try:
         print(datetime.datetime.strptime(parser_apod.parse_args().start_date, "%d.%m.%Y").date())
     except ValueError:
-        print('Неверно введена еачальная дата')
+        print('Неверно введена начальная дата')
         exit()
     try:
         print(datetime.datetime.strptime(parser_apod.parse_args().end_date, "%d.%m.%Y").date())
@@ -58,6 +60,4 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    nasa_api_key = os.environ.get('NASA_API_KEY')
     main()

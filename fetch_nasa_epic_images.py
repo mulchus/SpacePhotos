@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
+    nasa_api_key = os.environ['NASA_API_KEY']
     parser_epic = argparse.ArgumentParser(description='Загрузка фото Земли из NASA EPIC по введенной дате')
     parser_epic.add_argument(
         'date_image',
@@ -49,6 +51,4 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    nasa_api_key = os.environ.get('NASA_API_KEY')
     main()

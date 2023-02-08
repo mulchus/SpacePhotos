@@ -8,6 +8,10 @@ from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
+    special_pause = int(os.environ['SPECIAL_PAUSE'])
+    telegram_chat_id = os.environ['CHAT_ID']
+    telegram_bot_token = os.environ['TELEGRAM_BOT_TOKEN']
     directory = argv[1]
     pause = int(argv[2])
     if not pause:
@@ -17,13 +21,11 @@ def main():
 
     while True:
         for file in onlyfiles:
-            telegram_bot.bot_send_photo(f'{directory}{file}')
+            telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, f'{directory}{file}')
             time.sleep(pause) if pause == special_pause else time.sleep(3)  # хитрые паузы согласно заданию
         shuffle(onlyfiles)
         time.sleep(pause) if pause != special_pause else 0  # хитрые паузы согласно заданию
 
 
 if __name__ == '__main__':
-    load_dotenv()
-    special_pause = int(os.environ.get('SPECIAL_PAUSE'))
     main()
