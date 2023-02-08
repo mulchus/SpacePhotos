@@ -15,6 +15,7 @@ def main():
         path = argv[1]
     except IndexError:
         print('Не указан путь к папке с файлами!')
+        path = ''
         exit()
     if os.path.isfile(path):
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, path)

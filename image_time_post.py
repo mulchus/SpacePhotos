@@ -28,7 +28,6 @@ def main():
 
     while True:
         for file in onlyfiles:
-            print(directory)
             telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, f'{directory}{file}')
             time.sleep(pause) if pause == special_pause else time.sleep(3)  # хитрые паузы согласно заданию
         shuffle(onlyfiles)
