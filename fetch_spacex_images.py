@@ -8,11 +8,12 @@ def main():
     parser_spacex = argparse.ArgumentParser(description='Ввод ID запуска для SpaceX (по умолчанию - последний запуск)')
     parser_spacex.add_argument(
         'id',
+        default='latest',
         nargs='?',
         help='загрузка фото по введенному коду запуска SpaceX'
     )
 
-    id_launch = 'latest' if parser_spacex.parse_args().id is None else parser_spacex.parse_args().id
+    id_launch = parser_spacex.parse_args().id
     response = requests.get(f'https://api.spacexdata.com/v5/launches/{id_launch}')
     response.raise_for_status()
 
