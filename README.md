@@ -90,7 +90,7 @@ The delay is set in the script launch line.
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
 ```
 **_specified_photo_post.py_** - a script to publish a photo on a specific path. If the file is not found, a random 
-photo is published from all available photos (folder tree, starting with PATH_TO_THE_FOLDER_WITH_SCRIPT\Image\)
+photo is published from all available photos (folder tree, starting with PATH_TO_THE_FOLDER_WITH_SCRIPT\Images\)
 
 
 ### Project Goals
@@ -187,10 +187,10 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [dir
 - pause - задержка между публикациями в секундах, по умолчанию задана в 14400 секунд (4 часа).
 
 ```
-python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
+python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\specified_photo_post.py [-h] [directory]
 ```
 **_specified_photo_post.py_** - скрипт для публикации фото по конкретному пути. Если файл не найден - публикуется 
-случайное фото из всех имеющихся фотографий (дерево папок, начиная с PATH_TO_THE_FOLDER_WITH_SCRIPT\Image\)
+случайное фото из всех имеющихся фотографий (дерево папок, начиная с ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\Images\)
 
 
 ### Цель проекта

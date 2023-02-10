@@ -3,7 +3,6 @@ import os
 import functions
 import telegram_bot
 import random
-from pathlib import Path
 from dotenv import load_dotenv
 
 
@@ -14,13 +13,12 @@ def main():
     try:
         path = argv[1]
     except IndexError:
+        path = os.path.join(os.getcwd(), 'Images')
         print('Не указан путь к папке с файлами!')
-        path = ''
-        exit()
     if os.path.isfile(path):
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, path)
     else:
-        random_photo = random.choice(functions.get_paths_of_files(Path.cwd() / 'Images'))
+        random_photo = random.choice(functions.get_paths_of_files(path))
         telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, random_photo)
 
 
