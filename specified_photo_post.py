@@ -21,10 +21,10 @@ def main():
     path = parser_image.parse_args().path
 
     if os.path.isfile(path):
-        telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, path)
+        telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, path)
     else:
         random_photo = random.choice(functions.get_paths_of_files(path))
-        telegram_bot.bot_send_photo(telegram_bot_token, telegram_chat_id, random_photo)
+        telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, random_photo)
 
 
 if __name__ == '__main__':
