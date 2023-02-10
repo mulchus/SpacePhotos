@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 
-def save_file(images, file_path, payload=''):
+def save_file(images, file_path, payload=None):
     numbers_of_file = 0
     for file_number, file_url in enumerate(images, start=1):
         file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
