@@ -5,6 +5,7 @@ import os
 import telegram_bot
 from random import shuffle
 from dotenv import load_dotenv
+from telegram.error import NetworkError
 
 
 def main():
@@ -27,14 +28,18 @@ def main():
     )
 
     directory = parser_image.parse_args().directory
-    pause = parser_image.parse_args().pause
+    pause = int(parser_image.parse_args().pause)
 
     onlyfiles = [f for f in listdir(directory) if path.isfile(path.join(directory, f))]
 
     while True:
         for file in onlyfiles:
-            telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, os.path.join(directory, file))
+            try:
+                telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, os.path.join(directory, file))
+            except NetworkError:
+                time.sleep(1)
             time.sleep(pause) if pause == 14400 else time.sleep(3)  # хитрые паузы согласно заданию
+
         shuffle(onlyfiles)
         time.sleep(pause) if pause != 14400 else 0  # хитрые паузы согласно заданию
 
