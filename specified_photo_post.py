@@ -6,10 +6,8 @@ from dotenv import load_dotenv
 
 
 def get_paths_of_files(start_dir):  # make a list of paths for all files in start directory
-    file_paths = []
-    for folder, _, files in os.walk(start_dir):
-        for filename in files:
-            file_paths.append(os.path.abspath(os.path.join(folder, filename)))
+    file_paths = [os.path.abspath(os.path.join(folder, filename)) for folder, _, files in os.walk(start_dir)\
+                  for filename in files]
     return file_paths
 
 
@@ -29,9 +27,14 @@ def main():
 
     if os.path.isfile(path):
         telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, path)
+    elif os.path.isdir(path):
+        try:
+            random_photo = random.choice(get_paths_of_files(path))
+            telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, random_photo)
+        except Exception:
+            print('Неверно указан путь к файлу или директории')
     else:
-        random_photo = random.choice(get_paths_of_files(path))
-        telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, random_photo)
+        print('Неверно указан путь к файлу или директории')
 
 
 if __name__ == '__main__':

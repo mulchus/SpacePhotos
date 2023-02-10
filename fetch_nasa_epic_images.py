@@ -34,15 +34,9 @@ def main():
     _, date, date_ = functions.format_date(parser_epic.parse_args().date_image)
 
     # generating a list of all id of images
-    idimages = []
     payload = {'api_key': nasa_api_key}
-    for nasa_record in get_all_images_url(payload, date).json():
-        if nasa_record['image']:
-            idimages.append(nasa_record['image'])
-
-    images = []
-    for idimage in idimages:
-        images.append(f'https://api.nasa.gov/EPIC/archive/natural/{date_}/png/{idimage}.png')
+    idimages = [nasa_record['image'] for nasa_record in get_all_images_url(payload, date).json() if nasa_record['image']]
+    images = [f'https://api.nasa.gov/EPIC/archive/natural/{date_}/png/{idimage}.png' for idimage in idimages]
 
     year, month, day = date_.split('/')
 

@@ -51,10 +51,8 @@ def main():
     response = get_all_files_info(payload)
 
     # generating a list of all image
-    images = []
-    for nasa_record in response.json():
-        if nasa_record['media_type'] == 'image' and nasa_record['url']:
-            images.append(nasa_record['url'])
+    images = [nasa_record['url'] for nasa_record in response.json() if nasa_record['media_type'] == 'image'\
+                  and nasa_record['url']]
 
     Path(Path.cwd() / 'Images' / 'NASA' / 'APOD').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'NASA' / 'APOD' / 'nasa_apod_'
