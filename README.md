@@ -43,10 +43,6 @@ How to know? See in
 ```
 https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 ```
-```
-SPECIAL_PAUSE=14400 - A special pause, set in seconds (14400)
-```
-is applied according to the task when publishing images on the channel
 
 
 ### The command to run the script:
@@ -88,8 +84,8 @@ But there is one caveat :)
 - if you set the publication every 4 hours, the photos will be published once every 4 hours.
 The delay is set in the script launch line.
 - directory - location of photos (full path);
-- pause - the delay between publications in seconds.
-A special pause is set in seconds (14400) in the ".env" file.
+- pause - the delay between publications in seconds, is set to 14400 seconds by default (4 hours).
+
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
 ```
@@ -148,10 +144,6 @@ TELEGRAM_CHAT_ID - ID вашего Telegram канала или чата
 ```
 https://101info.ru/kak-uznat-id-kanala-telegram/#ID_канала
 ```
-```
-SPECIAL_PAUSE=14400 - Специальная пауза, задается в секундах (14400)
-```
-применяется согласно заданию при публикации изображений на канале
 
 
 ### Команда на запуск скрипта:
@@ -192,8 +184,7 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [dir
 - если задать публикацию раз в 4 часа – фото будут публиковаться по одному раз в 4 часа.
 Задержка задается в строке запуска скрипта.
 - directory - местоположение фотографий (полный путь);
-- pause - задержка между публикациями в секундах.
-Специальная пауза задается в секундах (14400) в файлe ".env".
+- pause - задержка между публикациями в секундах, по умолчанию задана в 14400 секунд (4 часа).
 
 ```
 python PATH_TO_THE_FOLDER_WITH_SCRIPT\specified_photo_post.py [-h] [directory]
