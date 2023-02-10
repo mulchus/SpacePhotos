@@ -1,9 +1,16 @@
 import argparse
 import os
-import functions
 import telegram_bot
 import random
 from dotenv import load_dotenv
+
+
+def get_paths_of_files(start_dir):  # make a list of paths for all files in start directory
+    file_paths = []
+    for folder, _, files in os.walk(start_dir):
+        for filename in files:
+            file_paths.append(os.path.abspath(os.path.join(folder, filename)))
+    return file_paths
 
 
 def main():
@@ -23,7 +30,7 @@ def main():
     if os.path.isfile(path):
         telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, path)
     else:
-        random_photo = random.choice(functions.get_paths_of_files(path))
+        random_photo = random.choice(get_paths_of_files(path))
         telegram_bot.send_photo(telegram_bot_token, telegram_chat_id, random_photo)
 
 

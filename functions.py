@@ -1,7 +1,6 @@
 from os import path
 import requests
 from urllib import parse
-import os
 from datetime import datetime
 
 
@@ -17,14 +16,6 @@ def save_file(images, file_path, payload=None):
             file.write(response.content)
             numbers_of_file += 1
     return numbers_of_file
-
-
-def get_paths_of_files(start_dir):  # make a list of paths for all files in start directory
-    file_paths = []
-    for folder, _, files in os.walk(start_dir):
-        for filename in files:
-            file_paths.append(os.path.abspath(os.path.join(folder, filename)))
-    return file_paths
 
 
 def format_date(date_in_string):
