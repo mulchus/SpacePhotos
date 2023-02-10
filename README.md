@@ -83,7 +83,7 @@ But there is one caveat :)
 - by default, the delay is set to 4 hours;
 - if you set the publication every 4 hours, the photos will be published once every 4 hours.
 The delay is set in the script launch line.
-- directory - location of photos (full path);
+- directory - location of photos (full path), is set to PATH_TO_THE_FOLDER_WITH_SCRIPT\Images\SpaceX\ by default;
 - pause - the delay between publications in seconds, is set to 14400 seconds by default (4 hours).
 
 ```
@@ -183,7 +183,7 @@ python ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\image_time_post.py [-h] [dir
 - по умолчанию задержка выставлена в 4 часа;
 - если задать публикацию раз в 4 часа – фото будут публиковаться по одному раз в 4 часа.
 Задержка задается в строке запуска скрипта.
-- directory - местоположение фотографий (полный путь);
+- directory - местоположение фотографий (полный путь), по умолчанию задана ПУТЬ_К_ПАПКЕ_СО_СКРИПТОМ\Images\SpaceX\;
 - pause - задержка между публикациями в секундах, по умолчанию задана в 14400 секунд (4 часа).
 
 ```
