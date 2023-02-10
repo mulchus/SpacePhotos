@@ -7,6 +7,13 @@ import os
 from dotenv import load_dotenv
 
 
+def get_all_files_info(payload):
+    all_files_info = 'https://api.nasa.gov/planetary/apod'
+    response = requests.get(all_files_info, params=payload)
+    response.raise_for_status()
+    return response
+
+
 def main():
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
@@ -40,10 +47,8 @@ def main():
     _, end_date, _ = functions.format_date(parser_apod.parse_args().end_date)
 
     payload = {'api_key': nasa_api_key, 'start_date': start_date, 'end_date': end_date}
-    all_files_url = 'https://api.nasa.gov/planetary/apod'
 
-    response = requests.get(all_files_url, params=payload)
-    response.raise_for_status()
+    response = get_all_files_info(payload)
 
     # generating a list of all image
     images = []

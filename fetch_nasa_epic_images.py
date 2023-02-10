@@ -7,6 +7,13 @@ import os
 from dotenv import load_dotenv
 
 
+def get_all_images_url(payload, date):
+    all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
+    response = requests.get(all_images_url, params=payload)
+    response.raise_for_status()
+    return response
+
+
 def main():
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
@@ -25,14 +32,11 @@ def main():
         exit()
 
     _, date, date_ = functions.format_date(parser_epic.parse_args().date_image)
-    payload = {'api_key': nasa_api_key}
-    all_images_url = f'https://api.nasa.gov/EPIC/api/natural/date/{date}'
-    response = requests.get(all_images_url, params=payload)
-    response.raise_for_status()
 
     # generating a list of all id of images
     idimages = []
-    for nasa_record in response.json():
+    payload = {'api_key': nasa_api_key}
+    for nasa_record in get_all_images_url(payload, date).json():
         if nasa_record['image']:
             idimages.append(nasa_record['image'])
 

@@ -4,6 +4,13 @@ import argparse
 import functions
 
 
+def get_all_images_urls(id_launch, ):
+    response = requests.get(f'https://api.spacexdata.com/v5/launches/{id_launch}')
+    response.raise_for_status()
+    images_urls = response.json()['links']['flickr']['original']
+    return images_urls
+
+
 def main():
     parser_spacex = argparse.ArgumentParser(description='Ввод ID запуска для SpaceX (по умолчанию - последний запуск)')
     parser_spacex.add_argument(
@@ -14,15 +21,12 @@ def main():
     )
 
     id_launch = parser_spacex.parse_args().id
-    response = requests.get(f'https://api.spacexdata.com/v5/launches/{id_launch}')
-    response.raise_for_status()
-
-    images = response.json()['links']['flickr']['original']
+    images_urls = get_all_images_urls(id_launch)
 
     Path(Path.cwd() / 'Images' / 'SpaceX').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'SpaceX' / 'spacex_'
 
-    numbers_of_file = functions.save_file(images, file_path)
+    numbers_of_file = functions.save_file(images_urls, file_path)
 
     print(f'Скачивание запуска ID {id_launch} завершено\n Скачано {numbers_of_file} фото')
 
