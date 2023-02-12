@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def save_file(images, file_path, payload=None):
-    numbers_of_file = 0
+    files_count = 0
     for file_number, file_url in enumerate(images, start=1):
         file_ext = path.splitext(parse.urlsplit(file_url).path)[1]
         file_name = f'{file_number}{file_ext}'
@@ -14,10 +14,10 @@ def save_file(images, file_path, payload=None):
 
         with open(f'{file_path}{file_name}', 'wb') as file:
             file.write(response.content)
-            numbers_of_file += 1
-    return numbers_of_file
+            files_count += 1
+    return files_count
 
 
-def format_date(date_in_string):
-    date_ = datetime.strptime(date_in_string, "%d.%m.%Y").date()
+def format_date(str_date):
+    date_ = datetime.strptime(str_date, "%d.%m.%Y").date()
     return date_, date_.strftime("%Y-%m-%d"), date_.strftime("%Y/%m/%d")

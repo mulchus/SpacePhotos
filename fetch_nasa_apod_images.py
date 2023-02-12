@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 
 
 def get_all_files_info(payload):
-    all_files_info = 'https://api.nasa.gov/planetary/apod'
-    response = requests.get(all_files_info, params=payload)
+    files_info_url = 'https://api.nasa.gov/planetary/apod'
+    response = requests.get(files_info_url, params=payload)
     response.raise_for_status()
     return response
 
@@ -17,21 +17,21 @@ def get_all_files_info(payload):
 def main():
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
-    parser_apod = argparse.ArgumentParser(description='Загрузка фото из NASA APOD по введенным датам с- по-')
-    parser_apod.add_argument(
+    apod_parser = argparse.ArgumentParser(description='Загрузка фото из NASA APOD по введенным датам с- по-')
+    apod_parser.add_argument(
         'start_date',
         nargs='?',
         default=datetime.datetime.today().strftime('%d.%m.%Y'),
         help='начальная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
     )
-    parser_apod.add_argument(
+    apod_parser.add_argument(
         'end_date',
         nargs='?',
         default=datetime.datetime.today().strftime('%d.%m.%Y'),
         help='конечная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
     )
 
-    args = parser_apod.parse_args()
+    args = apod_parser.parse_args()
     try:
         functions.format_date(args.start_date)
     except ValueError:
@@ -59,9 +59,9 @@ def main():
     Path(apod_dir).mkdir(parents=True, exist_ok=True)
     file_path = Path.joinpath(apod_dir, 'nasa_apod_')
 
-    numbers_of_file = functions.save_file(images, file_path, payload)
+    files_count = functions.save_file(images, file_path, payload)
 
-    print(f'Скачивание фото с {start_date} по.{end_date} завершено. Скачано {numbers_of_file} шт.\n')
+    print(f'Скачивание фото с {start_date} по.{end_date} завершено. Скачано {files_count} шт.\n')
 
 
 if __name__ == '__main__':
