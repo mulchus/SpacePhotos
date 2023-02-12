@@ -24,11 +24,13 @@ def main():
         'pause',
         nargs='?',
         default=14400,
+        type = int,
         help='задержка между публикациями в секундах (по умолчанию 14400 сек)'
     )
 
-    directory = parser_image.parse_args().directory
-    pause = int(parser_image.parse_args().pause)
+    args = parser_image.parse_args()
+    directory = args.directory
+    pause = args.pause
 
     onlyfiles = [f for f in listdir(directory) if path.isfile(path.join(directory, f))]
 

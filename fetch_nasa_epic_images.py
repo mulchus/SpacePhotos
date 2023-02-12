@@ -25,13 +25,14 @@ def main():
         help='дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
     )
 
+    args = parser_epic.parse_args()
     try:
-        functions.format_date(parser_epic.parse_args().date_image)
+        functions.format_date(args.date_image)
     except ValueError:
         print('Неверно введена дата')
         exit()
 
-    _, date, date_ = functions.format_date(parser_epic.parse_args().date_image)
+    _, date, date_ = functions.format_date(args.date_image)
 
     # generating a list of all id of images
     payload = {'api_key': nasa_api_key}

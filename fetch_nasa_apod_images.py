@@ -31,28 +31,29 @@ def main():
         help='конечная дата в формате ДД.ММ.ГГГГ (по умолчанию - текущая дата)'
     )
 
+    args = parser_apod.parse_args()
     try:
-        functions.format_date(parser_apod.parse_args().start_date)
+        functions.format_date(args.start_date)
     except ValueError:
         print('Неверно введена начальная дата')
         exit()
     try:
-        functions.format_date(parser_apod.parse_args().end_date)
+        functions.format_date(args.end_date)
     except ValueError:
         print('Неверно введена конечная дата')
         exit()
 
     # date of fotos
-    _, start_date, _ = functions.format_date(parser_apod.parse_args().start_date)
-    _, end_date, _ = functions.format_date(parser_apod.parse_args().end_date)
+    _, start_date, _ = functions.format_date(args.start_date)
+    _, end_date, _ = functions.format_date(args.end_date)
 
     payload = {'api_key': nasa_api_key, 'start_date': start_date, 'end_date': end_date}
 
     response = get_all_files_info(payload)
 
     # generating a list of all image
-    images = [nasa_record['url'] for nasa_record in response.json() if nasa_record['media_type'] == 'image'\
-                  and nasa_record['url']]
+    images = [nasa_record['url'] for nasa_record in response.json() if nasa_record['media_type'] == 'image'
+              and nasa_record['url']]
 
     Path(Path.cwd() / 'Images' / 'NASA' / 'APOD').mkdir(parents=True, exist_ok=True)
     file_path = Path.cwd() / 'Images' / 'NASA' / 'APOD' / 'nasa_apod_'
