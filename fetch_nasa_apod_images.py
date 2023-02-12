@@ -55,8 +55,9 @@ def main():
     images = [nasa_record['url'] for nasa_record in response.json() if nasa_record['media_type'] == 'image'
               and nasa_record['url']]
 
-    Path(Path.cwd() / 'Images' / 'NASA' / 'APOD').mkdir(parents=True, exist_ok=True)
-    file_path = Path.cwd() / 'Images' / 'NASA' / 'APOD' / 'nasa_apod_'
+    apod_dir = Path.cwd() / 'Images' / 'NASA' / 'APOD'
+    Path(apod_dir).mkdir(parents=True, exist_ok=True)
+    file_path = Path.joinpath(apod_dir, 'nasa_apod_')
 
     numbers_of_file = functions.save_file(images, file_path, payload)
 

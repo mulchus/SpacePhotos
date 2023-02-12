@@ -36,13 +36,15 @@ def main():
 
     # generating a list of all id of images
     payload = {'api_key': nasa_api_key}
-    idimages = [nasa_record['image'] for nasa_record in get_all_images_url(payload, date).json() if nasa_record['image']]
+    idimages = [nasa_record['image'] for nasa_record in get_all_images_url(payload, date).json()
+                if nasa_record['image']]
     images = [f'https://api.nasa.gov/EPIC/archive/natural/{date_}/png/{idimage}.png' for idimage in idimages]
 
     year, month, day = date_.split('/')
 
-    Path(Path.cwd() / 'Images' / 'NASA' / 'EPIC').mkdir(parents=True, exist_ok=True)
-    file_path = Path.cwd() / 'Images' / 'NASA' / 'EPIC' / f'nasa_epic_{day}.{month}.{year}_'
+    epic_dir = Path.cwd() / 'Images' / 'NASA' / 'EPIC'
+    Path(epic_dir).mkdir(parents=True, exist_ok=True)
+    file_path = Path.joinpath(epic_dir, f'nasa_epic_{day}.{month}.{year}_')
 
     numbers_of_file = functions.save_file(images, file_path, payload)
 

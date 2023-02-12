@@ -23,8 +23,9 @@ def main():
     id_launch = parser_spacex.parse_args().id
     images_urls = get_all_images_urls(id_launch)
 
-    Path(Path.cwd() / 'Images' / 'SpaceX').mkdir(parents=True, exist_ok=True)
-    file_path = Path.cwd() / 'Images' / 'SpaceX' / 'spacex_'
+    images_dir = Path.cwd() / 'Images' / 'SpaceX'
+    Path(images_dir).mkdir(parents=True, exist_ok=True)
+    file_path = Path.joinpath(images_dir, 'spacex_')
 
     numbers_of_file = functions.save_file(images_urls, file_path)
 
