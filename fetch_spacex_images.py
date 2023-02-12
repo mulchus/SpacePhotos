@@ -10,8 +10,8 @@ def get_all_images_urls(launch_id):
         response.raise_for_status()
         images_urls = response.json()['links']['flickr']['original']
         return images_urls
-    except requests.exceptions.HTTPError as e:
-        print(f'Указан неверный ID запуска.\nОшибка {e}')
+    except requests.exceptions.HTTPError as error:
+        print(f'Указан неверный ID запуска.\nОшибка {error}')
         exit()
 
 
